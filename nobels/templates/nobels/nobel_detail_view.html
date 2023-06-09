@@ -1,0 +1,9 @@
+{% extends "_base.html" %}
+
+{% block page_title %}جزئیات جایزه نوبل {{ nobel.name }}{% endblock %}
+
+{% block content %}
+    <h1>{{ nobel.name }}</h1>
+    <p>{{ nobel.description }}</p>
+    <h4>{{ nobel.country }}</h4>
+{% endblock %}
