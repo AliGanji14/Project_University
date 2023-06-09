@@ -6,4 +6,7 @@
     <h1>{{ nobel.name }}</h1>
     <p>{{ nobel.description }}</p>
     <h4>{{ nobel.country }}</h4>
+    <a href="{% url "nobel_update" nobel.id %}">
+        <button class="btn btn-info" type="button">ویرایش</button>
+    </a>
 {% endblock %}

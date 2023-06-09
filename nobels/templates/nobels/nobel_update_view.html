@@ -1,13 +1,13 @@
 {% extends "_base.html" %}
 
 {% load crispy_forms_tags %}
-{% block page_title %}ایجاد جایزه نوبل {% endblock %}
+{% block page_title %}ویرایش جایزه نوبل {{ nobel.name }}{% endblock %}
 
 {% block content %}
     <form action="" method="post">
         {% csrf_token %}
         {{ form|crispy }}
-        <button class="btn btn-success" type="submit">اضافه شدن</button>
+        <button class="btn btn-success" type="submit">ویرایش</button>
     </form>
     <a href="{% url "nobel_list" %}">لیست همه برندگان</a>
 

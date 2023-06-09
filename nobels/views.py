@@ -17,3 +17,9 @@ class NobelCreateView(generic.CreateView):
     model = Nobel
     fields = ["name", "description", "year", "country", "grouping"]
     template_name = "nobels/nobel_create_view.html"
+
+
+class NobelUpdateView(generic.UpdateView):
+    model = Nobel
+    fields = ["name", "description", "year", "country", "grouping"]
+    template_name = "nobels/nobel_update_view.html"
