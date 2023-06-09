@@ -1,0 +1,14 @@
+{% extends "_base.html" %}
+
+{% load crispy_forms_tags %}
+{% block page_title %}حذف جایزه نوبل {{ nobel.name }}{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <h1>حذف کتاب {{ nobel.name }}</h1>
+        <input type="submit" value="حذف">
+    </form>
+    <a href="{% url "nobel_list" %}">لیست همه برندگان</a>
+
+{% endblock %}
