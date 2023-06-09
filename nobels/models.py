@@ -1,6 +1,5 @@
 from django.urls import reverse
 from django.db import models
-from django.contrib.auth import get_user_model
 
 
 class Nobel(models.Model):
@@ -12,7 +11,6 @@ class Nobel(models.Model):
         ("physics", "physics"),
         ("physiology and medicine", "physiology and medicine"),
     )
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     description = models.TextField()
     year = models.PositiveIntegerField()
