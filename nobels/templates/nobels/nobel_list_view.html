@@ -7,4 +7,5 @@
     {% for nobel in nobels %}
         <h1>{{ nobel.name }}</h1>
     {% endfor %}
+    <a href="{% url "nobel_create" %}">اضافه کردن برنده جایزه نوبل</a>
 {% endblock %}
