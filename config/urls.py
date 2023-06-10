@@ -22,5 +22,5 @@ urlpatterns = [
     path("", include("pages.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/", include("accounts.urls")),
-    path("nobel/", include("nobels.urls")),
+    path("nobels/", include("nobels.urls")),
 ]
