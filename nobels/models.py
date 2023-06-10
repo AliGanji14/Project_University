@@ -16,6 +16,7 @@ class Nobel(models.Model):
     year = models.PositiveIntegerField()
     country = models.CharField(max_length=50)
     grouping = models.CharField(choices=STATUS_CHOICES, max_length=23)
+    cover = models.ImageField(upload_to="covers/",blank=True)
     datetime_created = models.DateTimeField(auto_now_add=True)
     datetime_modified = models.DateTimeField(auto_now=True)
 

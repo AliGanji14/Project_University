@@ -17,13 +17,13 @@ class NobelDetailView(generic.DetailView):
 
 class NobelCreateView(generic.CreateView):
     model = Nobel
-    fields = ["name", "description", "year", "country", "grouping"]
+    fields = ["name", "description", "year", "country", "grouping","cover"]
     template_name = "nobels/nobel_create.html"
 
 
 class NobelUpdateView(generic.UpdateView):
     model = Nobel
-    fields = ["name", "description", "year", "country", "grouping"]
+    fields = ["name", "description", "year", "country", "grouping","cover"]
     template_name = "nobels/nobel_update.html"
 
 
