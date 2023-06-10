@@ -6,6 +6,7 @@ from .models import Nobel
 
 class NobelListView(generic.ListView):
     model = Nobel
+    paginate_by = 4
     template_name = "nobels/nobel_list.html"
     context_object_name = "nobels"
 
@@ -17,13 +18,13 @@ class NobelDetailView(generic.DetailView):
 
 class NobelCreateView(generic.CreateView):
     model = Nobel
-    fields = ["name", "description", "year", "country", "grouping","cover"]
+    fields = ["name", "description", "year", "country", "grouping", "cover"]
     template_name = "nobels/nobel_create.html"
 
 
 class NobelUpdateView(generic.UpdateView):
     model = Nobel
-    fields = ["name", "description", "year", "country", "grouping","cover"]
+    fields = ["name", "description", "year", "country", "grouping", "cover"]
     template_name = "nobels/nobel_update.html"
 
 
