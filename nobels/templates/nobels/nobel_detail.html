@@ -21,13 +21,11 @@
                             <h5 class="small my-1"><span class="text-muted">کشور: </span>{{ nobel.country }}</h5>
                             <h5 class="small my-1"><span class="text-muted">برنده سال: </span>{{ nobel.year }}</h5>
                             <h5 class="small my-1"><span class="text-muted">دسته بندی: </span>{{ nobel.grouping }}</h5>
-                            <a href="{% url "nobel_update" nobel.id%}">ویرایش</a><apan> یا </apan>
-                            <a href="{% url "nobel_delete" nobel.id%}">حذف</a>
                         </div>
-                        <div class="col-xs-12 col-md-3 d-flex flex-column">
-                            <h3 class="align-self-center pt-2 text-muted align-self-md-end">
-                                ۱۰,۰۰۰
-                            </h3>
+                        <div class="col-xs-12 mt-3 col-md-2 d-flex flex-column">
+                            <a class="btn btn-primary mt-1" href="{% url "nobel_update" nobel.id %}" role="button">ویرایش</a>
+                            <a class="btn btn-danger mt-3" href="{% url "nobel_delete" nobel.id %}"
+                               role="button">حذف</a>
                         </div>
                     </div>
                 </div>

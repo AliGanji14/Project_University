@@ -7,8 +7,6 @@
     <form action="" method="post">
         {% csrf_token %}
         <h1>حذف کتاب {{ nobel.name }}</h1>
-        <input type="submit" value="حذف">
+        <input class="btn btn-danger mt-2" type="submit" value="حذف">
     </form>
-    <a href="{% url "nobel_list" %}">لیست همه برندگان</a>
-
 {% endblock %}

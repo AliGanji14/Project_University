@@ -4,12 +4,12 @@ from django.db import models
 
 class Nobel(models.Model):
     STATUS_CHOICES = (
-        ('chemistry', 'chemistry'),
-        ('economy', 'economy'),
-        ("literature", "literature"),
-        ("nobel peace", "nobel peace"),
-        ("physics", "physics"),
-        ("physiology and medicine", "physiology and medicine"),
+        ('اقتصاد', 'اقتصاد'),
+        ("ادبیات", "ادبیات"),
+        ('شیمی', 'شیمی'),
+        ("فیزیک", "فیزیک"),
+        ("صلح نوبل", "صلح نوبل"),
+        ("فیزیولوژی و پزشکی", "فیزیولوژی و پزشکی"),
     )
     name = models.CharField(max_length=200)
     description = models.TextField()
