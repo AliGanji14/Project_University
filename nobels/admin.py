@@ -9,4 +9,4 @@ class AdminBook(admin.ModelAdmin):
 
 @admin.register(Comment)
 class AdminBook(admin.ModelAdmin):
-    list_display = ("user", "nobel", "text", "datetime_created")
+    list_display = ("user", "nobel", "text", "datetime_created","is_active")
