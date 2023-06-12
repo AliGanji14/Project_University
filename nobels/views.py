@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy
 from django.views import generic
 from django.shortcuts import get_object_or_404, render
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 
 from .models import Nobel
@@ -13,6 +13,9 @@ class NobelListView(generic.ListView):
     paginate_by = 4
     template_name = "nobels/nobel_list.html"
     context_object_name = "nobels"
+
+    def get_queryset(self):
+        return Nobel.objects.order_by("-datetime_created")
 
 
 @login_required()
@@ -50,13 +53,21 @@ class NobelCreateView(LoginRequiredMixin, generic.CreateView):
     template_name = "nobels/nobel_create.html"
 
 
-class NobelUpdateView(LoginRequiredMixin, generic.UpdateView):
+class NobelUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = Nobel
     fields = ["name", "description", "year", "country", "grouping", "cover"]
     template_name = "nobels/nobel_update.html"
 
+    def test_func(self):
+        obj = self.get_object()
+        return obj.user == self.request.user
 
-class NobelDeleteView(LoginRequiredMixin, generic.DeleteView):
+
+class NobelDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     model = Nobel
     template_name = "nobels/nobel_delete.html"
     success_url = reverse_lazy("nobel_list")
+
+    def test_func(self):
+        obj = self.get_object()
+        return obj.user == self.request.user
