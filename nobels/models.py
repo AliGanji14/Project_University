@@ -12,6 +12,7 @@ class Nobel(models.Model):
         ("صلح نوبل", "صلح نوبل"),
         ("فیزیولوژی و پزشکی", "فیزیولوژی و پزشکی"),
     )
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     description = models.TextField()
     year = models.PositiveIntegerField()

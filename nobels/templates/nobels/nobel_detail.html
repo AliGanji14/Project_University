@@ -23,6 +23,8 @@
                             <h5 class="small my-1"><span class="text-muted">کشور: </span>{{ nobel.country }}</h5>
                             <h5 class="small my-1"><span class="text-muted">برنده سال: </span>{{ nobel.year }}</h5>
                             <h5 class="small my-1"><span class="text-muted">دسته بندی: </span>{{ nobel.grouping }}</h5>
+                            <h5 class="small my-1"><span class="text-muted">ایجاد کننده: </span>{{ nobel.user.username }}</h5>
+
                         </div>
                         <div class="col-xs-12 mt-3 col-md-2 d-flex flex-column">
                             <a class="btn btn-primary mt-1" href="{% url "nobel_update" nobel.id %}" role="button">ویرایش</a>
@@ -46,7 +48,7 @@
                                 <div class="border-bottom mb-3">
                                     <h5 class="mb-3">{{ comment.user.username }}</h5>
                                     <p>{{ comment.text|linebreaks }}</p>
-                            </div>
+                                </div>
                             {% endif %}
                         {% endfor %}
                     </div>
