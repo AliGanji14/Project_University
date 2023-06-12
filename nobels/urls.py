@@ -1,9 +1,9 @@
 from django.urls import path
 
-from .views import NobelListView, nobe_detail_view, NobelCreateView, NobelUpdateView, NobelDeleteView
+from .views import nobel_list_view, nobe_detail_view, NobelCreateView, NobelUpdateView, NobelDeleteView
 
 urlpatterns = [
-    path("", NobelListView.as_view(), name="nobel_list"),
+    path("", nobel_list_view, name="nobel_list"),
     path("<int:pk>/", nobe_detail_view, name="nobel_detail"),
     path("new/", NobelCreateView.as_view(), name="nobel_create"),
     path("<int:pk>/edit/", NobelUpdateView.as_view(), name="nobel_update"),
