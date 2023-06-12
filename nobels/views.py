@@ -1,6 +1,8 @@
 from django.urls import reverse_lazy
 from django.views import generic
 from django.shortcuts import get_object_or_404, render
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 from .models import Nobel
 from .forms import CommentForm
@@ -13,6 +15,7 @@ class NobelListView(generic.ListView):
     context_object_name = "nobels"
 
 
+@login_required()
 def nobe_detail_view(request, pk):
     # get nobel object
     nobel = get_object_or_404(Nobel, pk=pk)
@@ -41,19 +44,19 @@ def nobe_detail_view(request, pk):
 #     template_name = "nobels/nobel_detail.html"
 
 
-class NobelCreateView(generic.CreateView):
+class NobelCreateView(LoginRequiredMixin, generic.CreateView):
     model = Nobel
     fields = ["name", "description", "year", "country", "grouping", "cover"]
     template_name = "nobels/nobel_create.html"
 
 
-class NobelUpdateView(generic.UpdateView):
+class NobelUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Nobel
     fields = ["name", "description", "year", "country", "grouping", "cover"]
     template_name = "nobels/nobel_update.html"
 
 
-class NobelDeleteView(generic.DeleteView):
+class NobelDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Nobel
     template_name = "nobels/nobel_delete.html"
     success_url = reverse_lazy("nobel_list")
