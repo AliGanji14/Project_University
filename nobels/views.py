@@ -1,12 +1,12 @@
 from django.urls import reverse_lazy
 from django.views import generic
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 
 from .models import Nobel
-from .forms import CommentForm
+from .forms import NobelForm, CommentForm
 
 
 def nobel_list_view(request):
@@ -22,16 +22,6 @@ def nobel_list_view(request):
         "nobels": page_obj,
     }
     return render(request, "nobels/nobel_list.html", context)
-
-
-# class NobelListView(generic.ListView):
-#     model = Nobel
-#     paginate_by = 4
-#     template_name = "nobels/nobel_list.html"
-#     context_object_name = "nobels"
-#
-#     def get_queryset(self):
-#         return Nobel.objects.order_by("-datetime_created")
 
 
 @login_required()
@@ -58,15 +48,18 @@ def nobe_detail_view(request, pk):
     })
 
 
-# class NobelDetailView(generic.DetailView):
-#     model = Nobel
-#     template_name = "nobels/nobel_detail.html"
-
-
-class NobelCreateView(LoginRequiredMixin, generic.CreateView):
-    model = Nobel
-    fields = ["name", "description", "year", "country", "grouping", "cover"]
-    template_name = "nobels/nobel_create.html"
+@login_required()
+def nobel_create_view(request):
+    if request.method == "POST":
+        create_nobel = NobelForm(request.POST)
+        if create_nobel.is_valid():
+            new_nobel = create_nobel.save(commit=False)
+            new_nobel.user = request.user
+            new_nobel.save()
+            return redirect(new_nobel)
+    else:
+        create_nobel = NobelForm()
+    return render(request, "nobels/nobel_create.html", {"form": create_nobel})
 
 
 class NobelUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
